@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ControlCash - Resumo Financeiro</title>
+    <link rel="icon" href="../images/ControlCash_logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-start mb-4">
+            <div>
+                <h1 class="display-6 fw-bold mb-1">Resumo Financeiro</h1>
+                <p class="text-muted-custom small">Visualize seus gastos por categoria</p>
+            </div>
+            <a href="configuracoes.html" class="btn btn-link text-decoration-none p-2" style="color: var(--blue-primary);">
+                <i class="bi bi-gear fs-3"></i>
+            </a>
+        </div>
+
+        <div class="card-custom mb-4">
+            <p class="text-muted-custom small mb-2">Gastos totais deste mês</p>
+            <h2 class="display-5 fw-bold mb-4" id="totalExpenses">R$ 1.650,00</h2>
+
+            <h3 class="h6 fw-semibold mb-3">Distribuição de gastos</h3>
+            <div class="d-flex justify-content-center mb-4">
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+
+        <h3 class="h5 fw-semibold mb-3">Categorias</h3>
+        <div id="categoryList">
+            <!-- Categorias serão inseridas aqui via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Menu Inferior -->
+    <nav class="navbar-bottom">
+        <div class="container">
+            <div class="row w-100 g-0">
+                <div class="col">
+                    <a href="dashboard.html" class="nav-link active">
+                        <div class="nav-icon-wrapper">
+                            <i class="bi bi-house-door"></i>
+                        </div>
+                        <span>Início</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="renda.html" class="nav-link">
+                        <div class="nav-icon-wrapper">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <span>Renda</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="despesa.html" class="nav-link">
+                        <div class="nav-icon-wrapper">
+                            <i class="bi bi-graph-down-arrow"></i>
+                        </div>
+                        <span>Despesa</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="resumo.html" class="nav-link">
+                        <div class="nav-icon-wrapper">
+                            <i class="bi bi-pie-chart"></i>
+                        </div>
+                        <span>Resumo</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="metas.html" class="nav-link">
+                        <div class="nav-icon-wrapper">
+                            <i class="bi bi-bullseye"></i>
+                        </div>
+                        <span>Metas</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

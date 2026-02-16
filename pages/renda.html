@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ControlCash - Adicionar Renda</title>
+    <link rel="icon" href="../images/ControlCash_logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="display-6 fw-bold mb-0">Adicionar Renda</h1>
+            <a href="configuracoes.html" class="btn btn-link text-decoration-none p-2" style="color: var(--blue-primary);">
+                <i class="bi bi-gear fs-3"></i>
+            </a>
+        </div>
+
+        <form onsubmit="handleAddIncome(event)">
+            <div class="mb-4">
+                <label for="incomeValue" class="form-label">Valor</label>
+                <div class="position-relative">
+                    <span class="position-absolute top-50 translate-middle-y ms-3 text-muted-custom fs-5">R$</span>
+                    <input 
+                        type="number" 
+                        class="form-control form-control-custom ps-5" 
+                        id="incomeValue" 
+                        placeholder="0,00"
+                        step="0.01"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="incomeSource" class="form-label">Fonte</label>
+                <input 
+                    type="text" 
+                    class="form-control form-control-custom" 
+                    id="incomeSource" 
+                    placeholder="por exemplo, Salário, Freelance"
+                    required
+                >
+            </div>
+
+            <div class="mb-4">
+                <label for="incomeDate" class="form-label">Data</label>
+                <input 
+                    type="date" 
+                    class="form-control form-control-custom" 
+                    id="incomeDate" 
+                    required
+                >
+            </div>
+
+            <div class="card-custom mb-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <label for="incomeRecurring" class="form-label mb-1 fw-semibold">Recorrente</label>
+                        <p class="text-muted-custom small mb-0">Esta é uma renda recorrente?</p>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="incomeRecurring">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary-custom w-100 mb-4">
+                Salvar
+            </button>
+        </form>
+
+        <!-- Histórico de Rendas -->
+        <div id="incomeHistory" class="mt-4"></div>
+    </div>
+
+    <!-- Modal Editar Renda -->
+    <div class="modal fade" id="editIncomeModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Renda</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editIncomeId">
+                    <div class="mb-3">
+                        <label for="editIncomeValue" class="form-label">Valor</label>
+                        <div class="position-relative">
+                            <span class="position-absolute top-50 translate-middle-y ms-3 text-muted-custom">R$</span>
+                            <input type="number" step="0.01" class="form-control form-control-custom ps-5" id="editIncomeValue">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editIncomeSource" class="form-label">Fonte</label>
+                        <input type="text" class="form-control form-control-custom" id="editIncomeSource">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editIncomeDate" class="form-label">Data</label>
+                        <input type="date" class="form-control form-control-custom" id="editIncomeDate">
+                    </div>
+                    <div class="card-custom">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <label for="editIncomeRecurring" class="form-label mb-1 fw-semibold">Recorrente</label>
+                                <p class="text-muted-custom small mb-0">Esta é uma renda recorrente?</p>
+                            </div>
+                            <div class="form-check form-switch mb-0">
+                                <input class="form-check-input" type="checkbox" id="editIncomeRecurring">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary-custom" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary-custom" onclick="saveEditIncome()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Inferior -->
+    <nav class="navbar-bottom">
+        <div class="container">
+            <div class="row w-100 g-0">
+                <div class="col">
+                    <a href="dashboard.html" class="nav-link active">
+                        <div class="nav-icon-wrapper">
+                            <i class="bi bi-house-door"></i>
+                        </div>
+                        <span>Início</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="renda.html" class="nav-link">
+                        <div class="nav-icon-wrapper">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <span>Renda</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="despesa.html" class="nav-link">
+                        <div class="nav-icon-wrapper">
+                            <i class="bi bi-graph-down-arrow"></i>
+                        </div>
+                        <span>Despesa</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="resumo.html" class="nav-link">
+                        <div class="nav-icon-wrapper">
+                            <i class="bi bi-pie-chart"></i>
+                        </div>
+                        <span>Resumo</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="metas.html" class="nav-link">
+                        <div class="nav-icon-wrapper">
+                            <i class="bi bi-bullseye"></i>
+                        </div>
+                        <span>Metas</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>
