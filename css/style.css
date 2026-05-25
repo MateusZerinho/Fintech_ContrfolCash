@@ -160,6 +160,7 @@ body {
   color: white !important;
   box-shadow: 0 8px 32px rgba(30, 144, 255, 0.3);
   transition: all 0.3s;
+  margin-bottom: 16px;
 }
 
 .btn-primary-custom:hover {
